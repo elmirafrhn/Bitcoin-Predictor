@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import com.farahani.elmira.bitcoinpredictor.model.BitcoinHistoryModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.row_item.*
 import javax.inject.Inject
 
 
@@ -20,22 +21,6 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
     lateinit var presenter: IMainPresenter<IMainView, IMainInteractor>
 
     var daysCount: Int = 5
-    override fun showHistory(bitcoinHistoryModel: BitcoinHistoryModel) {
-        val priceDateArray = bitcoinHistoryModel.bpi.toString()
-            .replace("{", "")
-            .replace("}", "")
-            .split(",")
-
-        var priceArray = ArrayList<String>()
-        for (item in priceDateArray.subList(priceDateArray.size - daysCount, priceDateArray.size)) {
-            priceArray.add(item.split("=")[1])
-        }
-
-        val adapter = BitcoinDaysAdapter(priceArray)
-        recyclerViewDaysBitcoin.adapter = adapter
-
-
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -48,13 +33,51 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
 
         initSpinner()
         initRecyclerView()
-
         presenter.getBitcoinHistory()
+    }
+
+    override fun showHistory(bitcoinHistoryModel: BitcoinHistoryModel) {
+        val priceDateArray = bitcoinHistoryModel.bpi.toString()
+            .replace("{", "")
+            .replace("}", "")
+            .split(",")
+
+        val priceArray = ArrayList<String>()
+        for (item in priceDateArray.subList(priceDateArray.size - daysCount, priceDateArray.size)) {
+            priceArray.add(item.split("=")[1])
+        }
+
+        val adapter = BitcoinDaysAdapter(priceArray)
+        recyclerViewDaysBitcoin.adapter = adapter
+        buttonPredict.isEnabled = true
+        buttonPredict.setOnClickListener { _ ->
+            textViewPredictedResult.text =
+                    String.format(resources.getString(R.string.predictedResult), priceArray[0], "LOWER")
+        }
+    }
+
+    override fun showLoading(isLoading: Boolean) {
+
+        when (isLoading) {
+            true -> apply {
+                progressBar.visibility = View.VISIBLE
+                textViewNoApiResponse.visibility = View.GONE
+            }
+            false -> apply {
+                progressBar.visibility = View.GONE
+                textViewNoApiResponse.visibility = View.GONE
+            }
+        }
+    }
+
+    override fun showError() {
+        textViewNoApiResponse.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
     }
 
     private fun initSpinner() {
         val spinnerAdapter =
-            ArrayAdapter.createFromResource(activity, R.array.days, R.layout.spinner_item)
+            ArrayAdapter.createFromResource(activity!!, R.array.days, R.layout.spinner_item)
         spinnerDays.adapter = spinnerAdapter
         spinnerDays.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(adapter: AdapterView<*>, v: View, i: Int, lng: Long) {
@@ -67,6 +90,7 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
                         5
                 }
                 presenter.getBitcoinHistory()
+                textViewDaysResult.text = String.format(resources.getString(R.string.resultDays), daysCount)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>) {
@@ -80,24 +104,6 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
         recyclerViewDaysBitcoin.layoutManager = layoutManager
     }
 
-    override fun showLoading(isLoading: Boolean) {
-
-        when(isLoading){
-            true-> apply {
-                progressBar.visibility = View.VISIBLE
-                textViewNoApiResponse.visibility = View.GONE
-            }
-            false->apply {
-                progressBar.visibility = View.GONE
-                textViewNoApiResponse.visibility = View.GONE
-            }
-        }
-    }
-
-    override fun showError() {
-        textViewNoApiResponse.visibility = View.VISIBLE
-        progressBar.visibility=View.GONE
-    }
     companion object {
         fun newInstance(): MainFragment {
             val fragment = MainFragment()
