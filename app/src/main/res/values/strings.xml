@@ -3,4 +3,12 @@
     <string name="title">Bitcoin Prediction</string>
     <string name="buttonPredictText">predict</string>
     <string name="resultDays">Past %1$d days Bitcoin price</string>
+    <string-array name="days">
+        <item>Five days</item>
+        <item>Six days</item>
+        <item>Seven days</item>
+     </string-array>
+    <string name="select_days">Select number of days</string>
+    <string name="predictedResult">Predicted result might be :  \n %1$d \n which indicated it is going %2$s</string>
+    <string name="noApiResponse">No data recieved, please check your internet connection!</string>
 </resources>

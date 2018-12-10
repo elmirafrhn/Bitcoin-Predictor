@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class MainPresenter<V : IMainView, I : IMainInteractor> @Inject constructor(
     interactor: I
-) : IMainPresenter<V,I> {
+) : IMainPresenter<V, I> {
     var mbaseInteractor: I? = null
         private set
     var mbaseView: V? = null
@@ -17,6 +17,7 @@ class MainPresenter<V : IMainView, I : IMainInteractor> @Inject constructor(
     init {
         mbaseInteractor = interactor
     }
+
     override fun onAttach(baseView: V) {
         mbaseView = baseView
     }
@@ -31,18 +32,22 @@ class MainPresenter<V : IMainView, I : IMainInteractor> @Inject constructor(
 
     override fun getBitcoinHistory() {
         val compositeDisposable = CompositeDisposable()
+        getView()?.showLoading(true)
+        compositeDisposable.add(
+            getInteractor()!!.getDefaultHistoryData()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ data ->
+                    val list = data.map()
+                    list?.let {
+                        getView()?.showHistory(list)
+                    }
+                    getView()?.showLoading(false)
 
-        compositeDisposable.add(getInteractor()!!.getDefaultHistoryData()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({ data ->
-                val list = data.map()
-                list?.let {
-                    getView()?.showHistory(list)
-                }
-
-            }, { throwable ->
-            Log.d("apiError", throwable.message)
-        }))
+                }, { throwable ->
+                    getView()?.showError()
+                    Log.d("apiError", throwable.message)
+                })
+        )
     }
 }
