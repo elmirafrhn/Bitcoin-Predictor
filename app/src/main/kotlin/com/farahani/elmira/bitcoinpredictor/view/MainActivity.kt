@@ -1,6 +1,7 @@
-package com.farahani.elmira.bitcoinpredictor
+package com.farahani.elmira.bitcoinpredictor.view
 
 import android.os.Bundle
+import com.farahani.elmira.bitcoinpredictor.R
 import dagger.android.support.DaggerAppCompatActivity
 
 class MainActivity : DaggerAppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.farahani.elmira.bitcoinpredictor
+package com.farahani.elmira.bitcoinpredictor.utils
 
 import com.farahani.elmira.bitcoinpredictor.model.BitcoinHistoryModel
 import com.farahani.elmira.bitcoinpredictor.network.Dto

@@ -1,4 +1,4 @@
-package com.farahani.elmira.bitcoinpredictor
+package com.farahani.elmira.bitcoinpredictor.view
 
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import com.farahani.elmira.bitcoinpredictor.intercator.IMainInteractor
+import com.farahani.elmira.bitcoinpredictor.presenter.IMainPresenter
+import com.farahani.elmira.bitcoinpredictor.R
 import com.farahani.elmira.bitcoinpredictor.model.BitcoinHistoryModel
+import com.farahani.elmira.bitcoinpredictor.utils.CustomClassifier
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.row_item.*
 import javax.inject.Inject
 
 
@@ -52,7 +55,7 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
         buttonPredict.isEnabled = true
         buttonPredict.setOnClickListener { _ ->
             textViewPredictedResult.text =
-                    String.format(resources.getString(R.string.predictedResult), priceArray[0], "LOWER")
+                    String.format(resources.getString(R.string.predictedResult), CustomClassifier.classify(), "LOWER")
         }
     }
 
@@ -77,7 +80,10 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
 
     private fun initSpinner() {
         val spinnerAdapter =
-            ArrayAdapter.createFromResource(activity!!, R.array.days, R.layout.spinner_item)
+            ArrayAdapter.createFromResource(activity!!,
+                R.array.days,
+                R.layout.spinner_item
+            )
         spinnerDays.adapter = spinnerAdapter
         spinnerDays.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(adapter: AdapterView<*>, v: View, i: Int, lng: Long) {

@@ -1,6 +1,9 @@
-package com.farahani.elmira.bitcoinpredictor
+package com.farahani.elmira.bitcoinpredictor.presenter
 
 import android.util.Log
+import com.farahani.elmira.bitcoinpredictor.intercator.IMainInteractor
+import com.farahani.elmira.bitcoinpredictor.utils.map
+import com.farahani.elmira.bitcoinpredictor.view.IMainView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

@@ -1,4 +1,4 @@
-package com.farahani.elmira.bitcoinpredictor
+package com.farahani.elmira.bitcoinpredictor.view
 
 import com.farahani.elmira.bitcoinpredictor.model.BitcoinHistoryModel
 import io.reactivex.Single

@@ -1,4 +1,4 @@
-package com.farahani.elmira.bitcoinpredictor
+package com.farahani.elmira.bitcoinpredictor.intercator
 
 import com.farahani.elmira.bitcoinpredictor.network.Dto
 import io.reactivex.Single

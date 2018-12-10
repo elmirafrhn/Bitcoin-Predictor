@@ -1,13 +1,11 @@
 package com.farahani.elmira.bitcoinpredictor.di
 
-import com.farahani.elmira.bitcoinpredictor.MainActivity
 import com.farahani.elmira.bitcoinpredictor.network.ApiService
 import com.farahani.elmira.bitcoinpredictor.network.ApiUtils
 import com.farahani.elmira.bitcoinpredictor.network.IApiService
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
-import dagger.android.ContributesAndroidInjector
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
