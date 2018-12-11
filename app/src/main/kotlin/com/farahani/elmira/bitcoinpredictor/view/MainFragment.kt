@@ -55,7 +55,9 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
         buttonPredict.isEnabled = true
         buttonPredict.setOnClickListener { _ ->
             textViewPredictedResult.text =
-                    String.format(resources.getString(R.string.predictedResult), CustomClassifier.classify(), "LOWER")
+                    //TODO:Uncomment if you want to view classifier example result
+//                    String.format(resources.getString(R.string.predictedResult), CustomClassifier.classify(), "LOWER")
+                    String.format(resources.getString(R.string.predictedResult), priceArray[0], "LOWER")
         }
     }
 
