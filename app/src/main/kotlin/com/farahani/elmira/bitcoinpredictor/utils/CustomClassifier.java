@@ -3,6 +3,7 @@ package com.farahani.elmira.bitcoinpredictor.utils;
 import de.daslaboratorium.machinelearning.classifier.Classifier;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CustomClassifier {
@@ -27,4 +28,11 @@ public class CustomClassifier {
         return bayes.classify(Arrays.asList(unknownText1)).getCategory()+" "+bayes.classify(Arrays.asList(unknownText2)).getCategory();
 
     }
+
+    public static ArrayList<Integer> getPriceArry(ArrayList<Integer> priceArray){
+        return priceArray;
+    }
+
+
+
 }

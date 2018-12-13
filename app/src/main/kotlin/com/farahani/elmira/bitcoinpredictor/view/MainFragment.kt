@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import com.farahani.elmira.bitcoinpredictor.intercator.IMainInteractor
-import com.farahani.elmira.bitcoinpredictor.presenter.IMainPresenter
 import com.farahani.elmira.bitcoinpredictor.R
+import com.farahani.elmira.bitcoinpredictor.intercator.IMainInteractor
 import com.farahani.elmira.bitcoinpredictor.model.BitcoinHistoryModel
-import com.farahani.elmira.bitcoinpredictor.utils.CustomClassifier
+import com.farahani.elmira.bitcoinpredictor.presenter.IMainPresenter
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
@@ -40,10 +39,7 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
     }
 
     override fun showHistory(bitcoinHistoryModel: BitcoinHistoryModel) {
-        val priceDateArray = bitcoinHistoryModel.bpi.toString()
-            .replace("{", "")
-            .replace("}", "")
-            .split(",")
+        val priceDateArray = bitcoinHistoryModel.bpi
 
         val priceArray = ArrayList<String>()
         for (item in priceDateArray.subList(priceDateArray.size - daysCount, priceDateArray.size)) {
@@ -82,7 +78,8 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
 
     private fun initSpinner() {
         val spinnerAdapter =
-            ArrayAdapter.createFromResource(activity!!,
+            ArrayAdapter.createFromResource(
+                activity!!,
                 R.array.days,
                 R.layout.spinner_item
             )

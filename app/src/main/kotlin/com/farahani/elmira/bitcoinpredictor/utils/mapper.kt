@@ -4,5 +4,10 @@ import com.farahani.elmira.bitcoinpredictor.model.BitcoinHistoryModel
 import com.farahani.elmira.bitcoinpredictor.network.Dto
 
 fun Dto.BitcoinHistory.map()= BitcoinHistoryModel(
-    bpi = bpi
+    bpi = bpi.toString()
+        .replace("{", "")
+        .replace("}", "")
+        .split(",").map {
+            it.split("=")[1]
+        }
 )
