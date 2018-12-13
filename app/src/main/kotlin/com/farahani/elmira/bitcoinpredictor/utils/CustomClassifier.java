@@ -29,9 +29,9 @@ public class CustomClassifier {
 
     }
 
-    public static ArrayList<Integer> getPriceArry(ArrayList<Integer> priceArray){
-        return priceArray;
-    }
+//    public static ArrayList<Integer> getPriceArry(ArrayList<Double> priceArray){
+//        return priceArray;
+//    }
 
 
 

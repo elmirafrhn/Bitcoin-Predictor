@@ -71,10 +71,10 @@
             android:layout_marginRight="34dp"
             android:layout_marginLeft="34dp"
             app:layout_constraintBottom_toTopOf="@+id/buttonPredict"
-            android:indeterminate="false"
-            style="?android:attr/progressBarStyleSmall"
+            android:indeterminate="true"
             android:visibility="gone"
             android:layout_gravity="center"
+            style="@android:style/Widget.Holo.Light.ProgressBar"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDaysResult"/>

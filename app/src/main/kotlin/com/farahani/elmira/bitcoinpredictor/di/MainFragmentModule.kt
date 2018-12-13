@@ -1,9 +1,10 @@
 package com.farahani.elmira.bitcoinpredictor.di
 
 import com.farahani.elmira.bitcoinpredictor.intercator.IMainInteractor
-import com.farahani.elmira.bitcoinpredictor.presenter.IMainPresenter
 import com.farahani.elmira.bitcoinpredictor.intercator.MainInteractor
+import com.farahani.elmira.bitcoinpredictor.presenter.IMainPresenter
 import com.farahani.elmira.bitcoinpredictor.presenter.MainPresenter
+import com.farahani.elmira.bitcoinpredictor.utils.BitcoinPriceClassifier
 import com.farahani.elmira.bitcoinpredictor.view.IMainView
 import com.farahani.elmira.bitcoinpredictor.view.MainFragment
 import dagger.Module
@@ -28,6 +29,12 @@ internal abstract class MainFragmentModule {
         @JvmStatic
         fun provideMainInteractor(interactor: MainInteractor): IMainInteractor {
             return interactor
+        }
+
+        @Provides
+        @JvmStatic
+        fun provideBitcoinPriceClassifier(): BitcoinPriceClassifier {
+            return BitcoinPriceClassifier()
         }
     }
 }

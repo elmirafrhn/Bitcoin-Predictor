@@ -8,4 +8,5 @@ interface IMainView {
     fun showHistory(bitcoinHistoryModel: BitcoinHistoryModel)
     fun showLoading(isLoading:Boolean)
     fun showError()
+    fun getDays(): Int
 }

@@ -9,6 +9,10 @@
         <item>Seven days</item>
      </string-array>
     <string name="select_days">Select number of days</string>
-    <string name="predictedResult">Predicted result might be :  \n %1$s \n which indicated it is going %2$s</string>
+    <string name="predictedResult">Predicted result might be :  \n %1$d \n which indicated it is going %2$s</string>
     <string name="noApiResponse">No data recieved, please check your internet connection!</string>
+
+    <!-- start and end dates-->
+    <string name="start">2013-01-01</string>
+    <string name="end">2018-12-08</string>
 </resources>

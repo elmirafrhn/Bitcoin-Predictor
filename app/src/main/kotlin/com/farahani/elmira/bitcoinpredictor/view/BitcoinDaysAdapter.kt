@@ -10,7 +10,7 @@ import com.farahani.elmira.bitcoinpredictor.R
 import kotlinx.android.synthetic.main.row_item.view.*
 
 
-class BitcoinDaysAdapter (val numbersList:ArrayList<String>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BitcoinDaysAdapter(val numbersList: List<Double>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_item, parent, false)
@@ -19,7 +19,7 @@ class BitcoinDaysAdapter (val numbersList:ArrayList<String>): RecyclerView.Adapt
 
     override fun getItemCount() = numbersList.size
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder.itemView.textViewBitcoinDaysCount.text = numbersList[position]
+        holder.itemView.textViewBitcoinDaysCount.text = numbersList[position].toString()
     }
 
     internal class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import com.farahani.elmira.bitcoinpredictor.R
 import com.farahani.elmira.bitcoinpredictor.intercator.IMainInteractor
 import com.farahani.elmira.bitcoinpredictor.model.BitcoinHistoryModel
+import com.farahani.elmira.bitcoinpredictor.network.Dto
 import com.farahani.elmira.bitcoinpredictor.presenter.IMainPresenter
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -35,25 +36,24 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
 
         initSpinner()
         initRecyclerView()
-        presenter.getBitcoinHistory()
+        presenter.getHistoryForSpecificTime(
+            Dto.TimeDto(
+                resources.getString(R.string.start),
+                resources.getString(R.string.end)
+            )
+        )
     }
 
     override fun showHistory(bitcoinHistoryModel: BitcoinHistoryModel) {
-        val priceDateArray = bitcoinHistoryModel.bpi
 
-        val priceArray = ArrayList<String>()
-        for (item in priceDateArray.subList(priceDateArray.size - daysCount, priceDateArray.size)) {
-            priceArray.add(item.split("=")[1])
-        }
-
-        val adapter = BitcoinDaysAdapter(priceArray)
+        val adapter = BitcoinDaysAdapter(bitcoinHistoryModel.bpi.subList(0, daysCount))
         recyclerViewDaysBitcoin.adapter = adapter
         buttonPredict.isEnabled = true
         buttonPredict.setOnClickListener { _ ->
-            textViewPredictedResult.text =
-                    //TODO:Uncomment if you want to view classifier example result
+            //            textViewPredictedResult.text =
+            //TODO:Uncomment if you want to view classifier example result
 //                    String.format(resources.getString(R.string.predictedResult), CustomClassifier.classify(), "LOWER")
-                    String.format(resources.getString(R.string.predictedResult), priceArray[0], "LOWER")
+//                    String.format(resources.getString(R.string.predictedResult), priceArray[0], "LOWER")
         }
     }
 
@@ -76,6 +76,8 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
         progressBar.visibility = View.GONE
     }
 
+    override fun getDays(): Int = daysCount
+
     private fun initSpinner() {
         val spinnerAdapter =
             ArrayAdapter.createFromResource(
@@ -94,7 +96,12 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
                     else ->
                         5
                 }
-                presenter.getBitcoinHistory()
+                presenter.getHistoryForSpecificTime(
+                    Dto.TimeDto(
+                        resources.getString(R.string.start),
+                        resources.getString(R.string.end)
+                    )
+                )
                 textViewDaysResult.text = String.format(resources.getString(R.string.resultDays), daysCount)
             }
 

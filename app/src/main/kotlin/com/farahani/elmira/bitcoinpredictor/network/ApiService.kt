@@ -13,7 +13,7 @@ constructor(retrofit: Retrofit) : IApiService {
         return retrofitCreated.getDefaulHistory()
     }
 
-    override fun getHistoryForSpecificTime(timeRange: Dto.TimeDto): Single<Dto.BitcoinHistory> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getHistoryForSpecificTime(start:String,end:String): Single<Dto.BitcoinHistory> {
+        return retrofitCreated.getHistoryForSpecificTime(start,end)
     }
 }

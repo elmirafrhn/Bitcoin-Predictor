@@ -8,6 +8,6 @@ fun Dto.BitcoinHistory.map()= BitcoinHistoryModel(
         .replace("{", "")
         .replace("}", "")
         .split(",").map {
-            it.split("=")[1]
+            it.split("=")[1].toDouble()
         }
 )
