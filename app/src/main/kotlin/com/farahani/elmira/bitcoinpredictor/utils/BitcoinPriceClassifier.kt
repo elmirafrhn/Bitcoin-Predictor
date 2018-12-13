@@ -6,11 +6,14 @@ import javax.inject.Inject
 
 class BitcoinPriceClassifier @Inject constructor() {
 
-    val beyas = BayesClassifier<Double, Double>()
+    private val beyas = BayesClassifier<Double, Double>()
 
-    fun classify(list: List<Double>, daysCount: Int) {
+    fun reset(){
+        beyas.reset()
+    }
+    fun classify(list: List<Double>, daysCount: Int): Double {
 
-        val categoriesArray = doubleArrayOf(-500.0, -100.0, -50.0, -10.0, 0.0, 10.0, 50.0, 100.0, 500.0)
+        val categoriesArray = doubleArrayOf(-400.0, -200.0, -100.0,-50.0, -10.0, 0.0, 10.0, 50.0, 100.0,200.0,400.0)
 
         list.forEachIndexed { index, item ->
             Log.d("elmiraa", index.toString())
@@ -30,6 +33,12 @@ class BitcoinPriceClassifier @Inject constructor() {
                 )
             ).category + list[list.size - 1]).toString()
         )
+        return beyas.classify(
+            list.subList(
+                list.size - daysCount - 1,
+                list.size - 1
+            )
+        ).category + list[list.size - 1]
     }
 
     private fun findNearestCategoryLabel(value: Double, a: DoubleArray): Double {
@@ -58,10 +67,10 @@ class BitcoinPriceClassifier @Inject constructor() {
         return if (a[lo] - value < value - a[hi]) a[lo] else a[hi]
     }
 
-    private fun makeCategoriesLabelSet(count: Int, start: Double, end: Double, stepNum: Double): DoubleArray {
-        val array = doubleArrayOf()
-        for (i in start.toInt()..end.toInt()) {
-            array[i] = start * stepNum
+    private fun makeCategoriesLabelSet(count: Int, start: Double, stepNum: Double): DoubleArray {
+        val array = DoubleArray(count)
+        for (i in 0 until count) {
+            array[i] = start + stepNum
         }
         return array
     }

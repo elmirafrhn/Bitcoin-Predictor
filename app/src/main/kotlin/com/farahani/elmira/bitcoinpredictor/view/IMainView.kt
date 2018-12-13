@@ -5,7 +5,7 @@ import io.reactivex.Single
 
 interface IMainView {
 
-    fun showHistory(bitcoinHistoryModel: BitcoinHistoryModel)
+    fun showResult(bitcoinHistoryModel: BitcoinHistoryModel,predictedResult:Double)
     fun showLoading(isLoading:Boolean)
     fun showError()
     fun getDays(): Int

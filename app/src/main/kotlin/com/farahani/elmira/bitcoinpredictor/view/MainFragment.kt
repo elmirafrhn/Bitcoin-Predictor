@@ -44,16 +44,51 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
         )
     }
 
-    override fun showHistory(bitcoinHistoryModel: BitcoinHistoryModel) {
+    override fun showResult(bitcoinHistoryModel: BitcoinHistoryModel, predictedResult: Double) {
 
         val adapter = BitcoinDaysAdapter(bitcoinHistoryModel.bpi.subList(0, daysCount))
         recyclerViewDaysBitcoin.adapter = adapter
         buttonPredict.isEnabled = true
         buttonPredict.setOnClickListener { _ ->
-            //            textViewPredictedResult.text =
-            //TODO:Uncomment if you want to view classifier example result
-//                    String.format(resources.getString(R.string.predictedResult), CustomClassifier.classify(), "LOWER")
-//                    String.format(resources.getString(R.string.predictedResult), priceArray[0], "LOWER")
+
+            presenter.getHistoryForSpecificTime(
+                Dto.TimeDto(
+                    resources.getString(R.string.start),
+                    resources.getString(R.string.end)
+                )
+            )
+
+            textViewPredictedResult.text =
+                    when (bitcoinHistoryModel.bpi[bitcoinHistoryModel.bpi.size - 1].compareTo(predictedResult)) {
+                        -1 -> {
+                            String.format(
+                                resources.getString(R.string.predictedResult),
+                                predictedResult.toString(),
+                                "higher"
+                            )
+                        }
+                        0 -> {
+                            String.format(
+                                resources.getString(R.string.predictedResult),
+                                predictedResult.toString(),
+                                "equal"
+                            )
+                        }
+                        1 -> {
+                            String.format(
+                                resources.getString(R.string.predictedResult),
+                                predictedResult.toString(),
+                                "lower"
+                            )
+                        }
+                        else -> {
+                            String.format(
+                                resources.getString(R.string.predictedResult),
+                                predictedResult.toString(),
+                                "{ no data }"
+                            )
+                        }
+                    }
         }
     }
 
@@ -78,6 +113,12 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
 
     override fun getDays(): Int = daysCount
 
+    private fun setDays(days: Int): Int {
+        daysCount = days
+        return daysCount
+    }
+
+
     private fun initSpinner() {
         val spinnerAdapter =
             ArrayAdapter.createFromResource(
@@ -96,6 +137,8 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
                     else ->
                         5
                 }
+                setDays(daysCount)
+                presenter.resetModel()
                 presenter.getHistoryForSpecificTime(
                     Dto.TimeDto(
                         resources.getString(R.string.start),
@@ -103,6 +146,7 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
                     )
                 )
                 textViewDaysResult.text = String.format(resources.getString(R.string.resultDays), daysCount)
+
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>) {

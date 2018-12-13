@@ -28,16 +28,20 @@ class MainPresenter<V : IMainView, I : IMainInteractor> @Inject constructor(
         mbaseInteractor = interactor
     }
 
-    override fun onAttach(baseView: V) {
-        mbaseView = baseView
-    }
-
     private fun getInteractor(): I? {
         return mbaseInteractor
     }
 
     private fun getView(): V? {
         return mbaseView
+    }
+
+    override fun onAttach(baseView: V) {
+        mbaseView = baseView
+    }
+
+    override fun resetModel() {
+        bitcoinPriceClassifier.reset()
     }
 
     override fun getBitcoinHistory() {
@@ -50,7 +54,7 @@ class MainPresenter<V : IMainView, I : IMainInteractor> @Inject constructor(
                 .subscribe({ data ->
                     val list = data.map()
                     list?.let {
-                        getView()?.showHistory(list)
+                        getView()?.showResult(list,0.0)
                     }
                     getView()?.showLoading(false)
 
@@ -70,8 +74,7 @@ class MainPresenter<V : IMainView, I : IMainInteractor> @Inject constructor(
                 .subscribe({ data ->
                     val list = data.map()
                     list?.let {
-                        bitcoinPriceClassifier.classify(list.bpi,getView()!!.getDays())
-                        getView()?.showHistory(list)
+                        getView()?.showResult(list,bitcoinPriceClassifier.classify(list.bpi,getView()!!.getDays()))
                     }
                     getView()?.showLoading(false)
                 }
