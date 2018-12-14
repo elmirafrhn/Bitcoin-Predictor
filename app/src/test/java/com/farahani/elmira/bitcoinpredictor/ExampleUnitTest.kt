@@ -1,4 +1,4 @@
-package com.farahani.elmira.bitcoinpredictor
+package com.bitcoin.predictor.bitcoinpredictor
 
 import org.junit.Test
 
