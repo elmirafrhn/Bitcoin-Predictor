@@ -2,6 +2,7 @@ package com.bitcoin.predictor.bitcoinpredictor.view
 
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,29 +73,33 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
                         -1 -> {
                             String.format(
                                 resources.getString(R.string.predictedResult),
-                                predictedResult.toString(),
-                                "higher"
+                                "<p><font color='#1A237E'>" + predictedResult.toString() + "</font></p>",
+                                "<font color='#1A237E'>higher</font>"
                             )
                         }
                         0 -> {
                             String.format(
                                 resources.getString(R.string.predictedResult),
-                                predictedResult.toString(),
-                                "equal"
+                                "<p><font color='#1A237E'>" + predictedResult.toString() + "</font></p>",
+                                "<font color='#1A237E'>equal</font>"
                             )
                         }
                         1 -> {
-                            String.format(
-                                resources.getString(R.string.predictedResult),
-                                predictedResult.toString(),
-                                "lower"
+                            Html.fromHtml(
+                                String.format(
+                                    resources.getString(R.string.predictedResult),
+                                    "<p><font color='#1A237E'>" + predictedResult.toString() + "</font></p>",
+                                    "<font color='#1A237E'>lower</font>"
+                                )
                             )
                         }
                         else -> {
-                            String.format(
-                                resources.getString(R.string.predictedResult),
-                                predictedResult.toString(),
-                                "{ no data }"
+                            Html.fromHtml(
+                                String.format(
+                                    resources.getString(R.string.predictedResult),
+                                    "<p><font color='#1A237E'>" + predictedResult.toString() + "</font></p>",
+                                    "<font color='#1A237E'>{ no data }</font>"
+                                )
                             )
                         }
                     }
@@ -130,7 +135,7 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
     private fun initSpinner() {
         val spinnerAdapter =
             ArrayAdapter.createFromResource(
-                activity!!,
+                activity!!.applicationContext,
                 R.array.days,
                 R.layout.spinner_item
             )

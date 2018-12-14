@@ -8,14 +8,14 @@ class BitcoinPriceClassifier @Inject constructor() {
 
     private val beyas = BayesClassifier<Double, Double>()
 
-    fun reset(){
+    fun reset() {
         beyas.reset()
     }
 
     fun classify(list: List<Double>, daysCount: Int): Double {
 
         //TODO: To change categories count and value just change categoriesArray
-        val categoriesArray = doubleArrayOf(-400.0, -200.0, -100.0,-50.0, -10.0, 0.0, 10.0, 50.0, 100.0,200.0,400.0)
+        val categoriesArray = doubleArrayOf(-400.0, -200.0, -100.0, -50.0, -10.0, 0.0, 10.0, 50.0, 100.0, 200.0, 400.0)
 
         list.forEachIndexed { index, item ->
             Log.d("elmiraa", index.toString())
