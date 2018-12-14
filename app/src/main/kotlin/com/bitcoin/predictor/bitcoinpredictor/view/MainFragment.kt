@@ -34,11 +34,7 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        textViewPredictedResult.text = String.format(
-            resources.getString(R.string.predictedResult),
-            "{ price }",
-            "..."
-        )
+
         initSpinner()
         initRecyclerView()
         presenter.getHistoryForSpecificTime(
@@ -47,14 +43,19 @@ class MainFragment @Inject constructor() : DaggerFragment(), IMainView {
                 resources.getString(R.string.end)
             )
         )
+        textViewPredictedResult.text = String.format(
+                resources.getString(R.string.predictedResult),
+        "{ price }",
+        "..."
+        )
     }
 
     override fun showResult(bitcoinHistoryModel: BitcoinHistoryModel, predictedResult: Double) {
 
         val adapter = BitcoinDaysAdapter(
             bitcoinHistoryModel.bpi.subList(
-                0,
-                daysCount
+                bitcoinHistoryModel.bpi.size-(daysCount+1),
+                bitcoinHistoryModel.bpi.size-1
             )
         )
         recyclerViewDaysBitcoin.adapter = adapter
