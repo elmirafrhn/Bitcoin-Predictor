@@ -1,4 +1,4 @@
-package com.elmira.bitcoin.bitcoinpredictor.utils;
+package com.elmira.farahani.bitcoinpredictor.utils;
 
 import de.daslaboratorium.machinelearning.classifier.Classifier;
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;

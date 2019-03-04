@@ -1,12 +1,12 @@
-package com.elmira.bitcoin.bitcoinpredictor.di
+package com.elmira.farahani.bitcoinpredictor.di
 
-import com.elmira.bitcoin.bitcoinpredictor.intercator.IMainInteractor
-import com.elmira.bitcoin.bitcoinpredictor.intercator.MainInteractor
-import com.elmira.bitcoin.bitcoinpredictor.presenter.IMainPresenter
-import com.elmira.bitcoin.bitcoinpredictor.presenter.MainPresenter
-import com.elmira.bitcoin.bitcoinpredictor.utils.BitcoinPriceClassifier
-import com.elmira.bitcoin.bitcoinpredictor.view.IMainView
-import com.elmira.bitcoin.bitcoinpredictor.view.MainFragment
+import com.elmira.farahani.bitcoinpredictor.intercator.IMainInteractor
+import com.elmira.farahani.bitcoinpredictor.intercator.MainInteractor
+import com.elmira.farahani.bitcoinpredictor.presenter.IMainPresenter
+import com.elmira.farahani.bitcoinpredictor.presenter.MainPresenter
+import com.elmira.farahani.bitcoinpredictor.utils.BitcoinPriceClassifier
+import com.elmira.farahani.bitcoinpredictor.view.IMainView
+import com.elmira.farahani.bitcoinpredictor.view.MainFragment
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

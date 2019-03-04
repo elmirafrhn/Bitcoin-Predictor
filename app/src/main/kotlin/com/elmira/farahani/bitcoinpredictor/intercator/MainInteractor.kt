@@ -1,7 +1,7 @@
-package com.elmira.bitcoin.bitcoinpredictor.intercator
+package com.elmira.farahani.bitcoinpredictor.intercator
 
-import com.elmira.bitcoin.bitcoinpredictor.network.Dto
-import com.elmira.bitcoin.bitcoinpredictor.network.IApiService
+import com.elmira.farahani.bitcoinpredictor.network.Dto
+import com.elmira.farahani.bitcoinpredictor.network.IApiService
 import io.reactivex.Single
 import javax.inject.Inject
 

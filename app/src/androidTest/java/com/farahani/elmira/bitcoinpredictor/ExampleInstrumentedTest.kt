@@ -1,4 +1,4 @@
-package com.bitcoin.predictor.bitcoinpredictor
+package com.elmira.farahani.bitcoinpredictor
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

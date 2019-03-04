@@ -1,4 +1,4 @@
-package com.elmira.bitcoin.bitcoinpredictor.view
+package com.elmira.farahani.bitcoinpredictor.view
 
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.elmira.bitcoin.bitcoinpredictor.R
+import com.elmira.farahani.bitcoinpredictor.R
 import kotlinx.android.synthetic.main.row_item.view.*
 
 

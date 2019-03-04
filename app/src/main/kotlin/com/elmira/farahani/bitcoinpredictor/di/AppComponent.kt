@@ -1,6 +1,6 @@
-package com.elmira.bitcoin.bitcoinpredictor.di
+package com.elmira.farahani.bitcoinpredictor.di
 
-import com.elmira.bitcoin.bitcoinpredictor.App
+import com.elmira.farahani.bitcoinpredictor.App
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule

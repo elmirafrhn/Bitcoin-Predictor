@@ -1,4 +1,4 @@
-package com.elmira.bitcoin.bitcoinpredictor.network
+package com.elmira.farahani.bitcoinpredictor.network
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,6 +1,6 @@
-package com.elmira.bitcoin.bitcoinpredictor.view
+package com.elmira.farahani.bitcoinpredictor.view
 
-import com.elmira.bitcoin.bitcoinpredictor.model.BitcoinHistoryModel
+import com.elmira.farahani.bitcoinpredictor.model.BitcoinHistoryModel
 
 interface IMainView {
 

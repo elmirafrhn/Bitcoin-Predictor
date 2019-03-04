@@ -1,7 +1,7 @@
-package com.elmira.bitcoin.bitcoinpredictor.utils
+package com.elmira.farahani.bitcoinpredictor.utils
 
-import com.elmira.bitcoin.bitcoinpredictor.model.BitcoinHistoryModel
-import com.elmira.bitcoin.bitcoinpredictor.network.Dto
+import com.elmira.farahani.bitcoinpredictor.model.BitcoinHistoryModel
+import com.elmira.farahani.bitcoinpredictor.network.Dto
 
 fun Dto.BitcoinHistory.map()=
     BitcoinHistoryModel(

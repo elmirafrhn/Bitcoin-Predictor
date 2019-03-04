@@ -1,6 +1,6 @@
-package com.elmira.bitcoin.bitcoinpredictor.intercator
+package com.elmira.farahani.bitcoinpredictor.intercator
 
-import com.elmira.bitcoin.bitcoinpredictor.network.Dto
+import com.elmira.farahani.bitcoinpredictor.network.Dto
 import io.reactivex.Single
 
 interface IMainInteractor {

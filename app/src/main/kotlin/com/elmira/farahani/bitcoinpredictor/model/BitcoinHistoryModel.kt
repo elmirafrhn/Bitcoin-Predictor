@@ -1,4 +1,4 @@
-package com.elmira.bitcoin.bitcoinpredictor.model
+package com.elmira.farahani.bitcoinpredictor.model
 
 data class BitcoinHistoryModel(
     val bpi:List<Double>

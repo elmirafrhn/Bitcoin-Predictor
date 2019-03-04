@@ -1,8 +1,8 @@
-package com.elmira.bitcoin.bitcoinpredictor.di
+package com.elmira.farahani.bitcoinpredictor.di
 
-import com.elmira.bitcoin.bitcoinpredictor.network.ApiService
-import com.elmira.bitcoin.bitcoinpredictor.network.ApiUtils
-import com.elmira.bitcoin.bitcoinpredictor.network.IApiService
+import com.elmira.farahani.bitcoinpredictor.network.ApiService
+import com.elmira.farahani.bitcoinpredictor.network.ApiUtils
+import com.elmira.farahani.bitcoinpredictor.network.IApiService
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable

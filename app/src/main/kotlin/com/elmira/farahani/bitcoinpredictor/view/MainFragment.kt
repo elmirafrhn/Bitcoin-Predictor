@@ -1,4 +1,4 @@
-package com.elmira.bitcoin.bitcoinpredictor.view
+package com.elmira.farahani.bitcoinpredictor.view
 
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -9,11 +9,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import com.elmira.bitcoin.bitcoinpredictor.R
-import com.elmira.bitcoin.bitcoinpredictor.intercator.IMainInteractor
-import com.elmira.bitcoin.bitcoinpredictor.model.BitcoinHistoryModel
-import com.elmira.bitcoin.bitcoinpredictor.network.Dto
-import com.elmira.bitcoin.bitcoinpredictor.presenter.IMainPresenter
+import com.elmira.farahani.bitcoinpredictor.R
+import com.elmira.farahani.bitcoinpredictor.intercator.IMainInteractor
+import com.elmira.farahani.bitcoinpredictor.model.BitcoinHistoryModel
+import com.elmira.farahani.bitcoinpredictor.network.Dto
+import com.elmira.farahani.bitcoinpredictor.presenter.IMainPresenter
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.elmira.bitcoin.bitcoinpredictor.utils
+package com.elmira.farahani.bitcoinpredictor.utils
 
 import android.util.Log
 import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier

@@ -1,6 +1,6 @@
-package com.elmira.bitcoin.bitcoinpredictor.intercator
+package com.elmira.farahani.bitcoinpredictor.intercator
 
-import com.elmira.bitcoin.bitcoinpredictor.network.IApiService
+import com.elmira.farahani.bitcoinpredictor.network.IApiService
 import javax.inject.Inject
 
 open class BaseInteractor @Inject
